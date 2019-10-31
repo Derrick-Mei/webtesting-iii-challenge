@@ -31,4 +31,16 @@ describe("Display Tests", () => {
         expect(lock).toHaveClass('green-led')
         expect(gate).toHaveClass('led green-led')
     })
+
+    it('Shows locked when locked === true and closed === true', ()=> {
+        const wrapper = rtl.render(<Display locked={true} closed={true}/>);
+        const locked = wrapper.getByText(/locked/i);
+        expect(locked).toBeVisible();
+    })
+
+    it('Shows unlocked when locked === false', ()=> {
+        const wrapper = rtl.render(<Display locked={false}/>);
+        const unlocked = wrapper.getByText(/unlocked/i);
+        expect(unlocked).toBeVisible();
+    })
 })
